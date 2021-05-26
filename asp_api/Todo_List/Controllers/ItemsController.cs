@@ -64,6 +64,9 @@ namespace Todo_List.Controllers
         [HttpPut("{id:length(24)}")]
         public IActionResult Update(string id, Item itemIn)
         {
+            if(!Authenticate()){
+                return NotFound();
+            }
             string userId = HttpContext.Session.GetString("userId");
             var item = _itemService.GetItem(id, userId);
 

@@ -22,12 +22,12 @@ namespace Todo_List.Services
 
         public List<Item> Get(string userId)
         {
-            return _items.Find(item => item.UserId == userId).ToList();
+            return _items.Find(item => item.UserId == userId && item.IsDisplay == true).ToList();
         }
 
         public Item GetItem(string id, string userId)
         {
-            return _items.Find<Item>(item => item.Id == id && item.UserId == userId).FirstOrDefault();
+            return _items.Find<Item>(item => item.Id == id && item.UserId == userId && item.IsDisplay == true).FirstOrDefault();
         }
 
         public Item Create(Item item)

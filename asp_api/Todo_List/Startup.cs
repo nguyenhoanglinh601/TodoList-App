@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Todo_List.Models.DB_Settings;
 using Todo_List.Services;
+using Microsoft.Net.Http.Headers;
 
 namespace Todo_List
 {
@@ -29,9 +30,20 @@ namespace Todo_List
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(
+               options => options.AddPolicy("MyAllowHeadersPolicy",
+               builder =>
+               {
+                   // requires using Microsoft.Net.Http.Headers;
+                   builder.WithOrigins("http://localhost:4200")
+                          .WithHeaders(HeaderNames.ContentType, "x-custom-header");
+               })
+            );
+
             services.AddDistributedMemoryCache();
-            services.AddSession(options => {
-                options.IdleTimeout = TimeSpan.FromMinutes(30);  
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
 
             services.AddSingleton<ItemService>();
@@ -56,6 +68,13 @@ namespace Todo_List
                 //app.UseSwagger();
                 //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Todo_List v1"));
             }
+
+            app.UseCors(
+               options => options.WithOrigins("http://localhost:4200")
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+               .AllowCredentials()
+            );
 
             app.UseHttpsRedirection();
 
