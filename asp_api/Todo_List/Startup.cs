@@ -30,12 +30,22 @@ namespace Todo_List
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //FOR LOCAL DEVELOPING
+            //services.AddCors(
+            //   options => options.AddPolicy("MyAllowHeadersPolicy",
+            //   builder =>
+            //   {
+            //       builder.WithOrigins("http://localhost:4200")
+            //              .WithHeaders(HeaderNames.ContentType, "x-custom-header");
+            //   })
+            //);
+
+            //FOR DELOYING
             services.AddCors(
                options => options.AddPolicy("MyAllowHeadersPolicy",
                builder =>
                {
-                   // requires using Microsoft.Net.Http.Headers;
-                   builder.WithOrigins("http://localhost:4200")
+                   builder.WithOrigins("https://todolist-hoanglinh.web.app")
                           .WithHeaders(HeaderNames.ContentType, "x-custom-header");
                })
             );
@@ -69,8 +79,17 @@ namespace Todo_List
                 //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Todo_List v1"));
             }
 
+            //FOR LOCAL DEVELOPING
+            //app.UseCors(
+            //   options => options.WithOrigins("http://localhost:4200")
+            //   .AllowAnyMethod()
+            //   .AllowAnyHeader()
+            //   .AllowCredentials()
+            //);
+
+            //FOR DEPLOYING
             app.UseCors(
-               options => options.WithOrigins("http://localhost:4200")
+               options => options.WithOrigins("https://todolist-hoanglinh.web.app")
                .AllowAnyMethod()
                .AllowAnyHeader()
                .AllowCredentials()

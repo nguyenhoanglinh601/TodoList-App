@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Project\\Git\\TodoListApp\\asp_api\\todo_list\\Todo_List.csproj": {}
+    "F:\\Project\\Git\\TodoListApp\\asp_api\\Todo_List\\Todo_List.csproj": {}
   },
   "projects": {
-    "F:\\Project\\Git\\TodoListApp\\asp_api\\todo_list\\Todo_List.csproj": {
+    "F:\\Project\\Git\\TodoListApp\\asp_api\\Todo_List\\Todo_List.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Project\\Git\\TodoListApp\\asp_api\\todo_list\\Todo_List.csproj",
+        "projectUniqueName": "F:\\Project\\Git\\TodoListApp\\asp_api\\Todo_List\\Todo_List.csproj",
         "projectName": "Todo_List",
-        "projectPath": "F:\\Project\\Git\\TodoListApp\\asp_api\\todo_list\\Todo_List.csproj",
+        "projectPath": "F:\\Project\\Git\\TodoListApp\\asp_api\\Todo_List\\Todo_List.csproj",
         "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "F:\\Project\\Git\\TodoListApp\\asp_api\\todo_list\\obj\\",
+        "outputPath": "F:\\Project\\Git\\TodoListApp\\asp_api\\Todo_List\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

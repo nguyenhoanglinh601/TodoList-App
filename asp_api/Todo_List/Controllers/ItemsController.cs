@@ -26,7 +26,7 @@ namespace Todo_List.Controllers
             if (Authenticate())
             {
                 string userId = HttpContext.Session.GetString("userId");
-                return _itemService.Get(userId);
+                return _itemService.Get(userId).OrderBy(i => i.EndDay).ToList();
             }
             else
             {
@@ -56,6 +56,10 @@ namespace Todo_List.Controllers
         [HttpPost]
         public ActionResult<Item> Create(Item item)
         {
+            if (!ModelState.IsValid)
+            {
+                return NotFound();
+            }
             _itemService.Create(item);
 
             return CreatedAtRoute("GetItem", new { id = item.Id.ToString() }, item);
@@ -64,7 +68,11 @@ namespace Todo_List.Controllers
         [HttpPut("{id:length(24)}")]
         public IActionResult Update(string id, Item itemIn)
         {
-            if(!Authenticate()){
+            if (!ModelState.IsValid)
+            {
+                return NotFound();
+            }
+            if (!Authenticate()){
                 return NotFound();
             }
             string userId = HttpContext.Session.GetString("userId");
